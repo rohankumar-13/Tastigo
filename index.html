@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tastigo - Smart food ordering with budget and food mood filters.">
+  <title>Tastigo — Food that fits your mood & budget</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="toast-container"></div>
+
+  <header class="topbar">
+    <div class="nav-shell">
+      <a class="brand" href="#" aria-label="Tastigo home">
+        <span class="brand-mark">T</span>
+        <span>Tasti<span>go</span></span>
+      </a>
+
+      <button class="location-btn" id="locationBtn">
+        <span class="pin">⌖</span>
+        <span>
+          <small>Deliver to</small>
+          <strong>Jaipur, Rajasthan</strong>
+        </span>
+        <span class="chevron">⌄</span>
+      </button>
+
+      <div class="nav-search">
+        <span>⌕</span>
+        <input id="globalSearch" type="search" placeholder="Search for dishes, restaurants or cuisines">
+        <button id="clearSearch" class="search-clear" aria-label="Clear search">×</button>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-action" id="offersBtn">♢ <span>Offers</span></button>
+        <button class="nav-action" id="ordersBtn">▤ <span>Orders</span></button>
+        <button class="nav-action" id="loginBtn">◯ <span>Sign in</span></button>
+        <button class="cart-btn" id="cartBtn">
+          <span>🛒</span><b id="cartCount">0</b><span>Cart</span>
+        </button>
+      </nav>
+      <button class="mobile-menu" id="mobileMenu">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <div class="eyebrow">✨ SMARTER FOOD DISCOVERY</div>
+          <h1>What's your <span>mood</span> today?</h1>
+          <p>Tell Tastigo your mood and budget. We'll help you find food that feels just right.</p>
+
+          <div class="hero-search">
+            <span>⌕</span>
+            <input id="heroSearch" type="search" placeholder="Try “biryani”, “pizza” or “something sweet”">
+            <button id="heroSearchBtn">Search</button>
+          </div>
+
+          <div class="quick-tags">
+            <span>Popular:</span>
+            <button class="quick-search" data-search="Biryani">Biryani</button>
+            <button class="quick-search" data-search="Pizza">Pizza</button>
+            <button class="quick-search" data-search="Burger">Burger</button>
+            <button class="quick-search" data-search="Dessert">Desserts</button>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <div class="hero-glow"></div>
+          <div class="food-orbit orbit-one">🍕</div>
+          <div class="food-orbit orbit-two">🍜</div>
+          <div class="food-orbit orbit-three">🍰</div>
+          <div class="hero-card">
+            <div class="hero-card-top">
+              <span class="status-dot"></span>
+              <span>Smart pick for you</span>
+            </div>
+            <img src="C:\Users\rohan kumar\Downloads\royal handi biryani.jpg" alt="Biryani">
+            <div class="hero-card-info">
+              <div><strong>Royal Handi Biryani</strong><span>⭐ 4.8</span></div>
+              <small>Spicy · Comfort · ₹249</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="mood-section" id="moodSection">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <span class="mini-label">YOUR CHOICE, YOUR WAY</span>
+            <h2>Pick your food mood</h2>
+          </div>
+          <button class="text-btn" id="resetMood">Reset filters ↺</button>
+        </div>
+
+        <div class="mood-grid" id="moodGrid">
+          <button class="mood-card active" data-mood="all">
+            <span class="mood-icon">✨</span><strong>Anything</strong><small>Surprise me</small>
+          </button>
+          <button class="mood-card" data-mood="comfort">
+            <span class="mood-icon">🫶</span><strong>Comfort</strong><small>Warm & homely</small>
+          </button>
+          <button class="mood-card" data-mood="spicy">
+            <span class="mood-icon">🌶️</span><strong>Spicy</strong><small>Turn up the heat</small>
+          </button>
+          <button class="mood-card" data-mood="healthy">
+            <span class="mood-icon">🥗</span><strong>Healthy</strong><small>Fresh & light</small>
+          </button>
+          <button class="mood-card" data-mood="sweet">
+            <span class="mood-icon">🍰</span><strong>Sweet</strong><small>Make it dessert</small>
+          </button>
+          <button class="mood-card" data-mood="quick">
+            <span class="mood-icon">⚡</span><strong>Quick bite</strong><small>Fast & filling</small>
+          </button>
+          <button class="mood-card" data-mood="party">
+            <span class="mood-icon">🎉</span><strong>Party time</strong><small>Share & celebrate</small>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="smart-filter">
+      <div class="section-shell">
+        <div class="filter-panel">
+          <div class="filter-title">
+            <span class="filter-badge">⌁</span>
+            <div>
+              <span class="mini-label">TASTIGO SMART FILTER</span>
+              <h2>Find food within your budget</h2>
+            </div>
+          </div>
+
+          <div class="budget-control">
+            <div class="budget-row">
+              <span>Maximum price per item</span>
+              <strong>₹<span id="budgetValue">500</span></strong>
+            </div>
+            <input id="budgetSlider" type="range" min="100" max="800" value="500" step="50">
+            <div class="range-labels"><span>₹100</span><span>₹800+</span></div>
+          </div>
+
+          <div class="filter-divider"></div>
+
+          <div class="filter-group">
+            <span class="filter-label">Cuisine</span>
+            <div class="choice-pills" id="cuisinePills">
+              <button class="choice-pill active" data-cuisine="all">All</button>
+              <button class="choice-pill" data-cuisine="North Indian">North Indian</button>
+              <button class="choice-pill" data-cuisine="Italian">Italian</button>
+              <button class="choice-pill" data-cuisine="Chinese">Chinese</button>
+              <button class="choice-pill" data-cuisine="South Indian">South Indian</button>
+              <button class="choice-pill" data-cuisine="Fast Food">Fast Food</button>
+              <button class="choice-pill" data-cuisine="Desserts">Desserts</button>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <span class="filter-label">Diet</span>
+            <div class="choice-pills">
+              <button class="choice-pill diet-pill" data-diet="veg">🌿 Veg only</button>
+              <button class="choice-pill diet-pill" data-diet="nonveg">🍗 Non-veg</button>
+            </div>
+          </div>
+
+          <button class="apply-filter" id="applyFilter">Show my matches <span>→</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="recommendation" id="recommendationSection">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <span class="mini-label">PERSONALIZED FOR YOU</span>
+            <h2 id="resultHeading">Top picks for your mood</h2>
+          </div>
+          <div class="result-meta"><span id="resultCount">0</span> items found</div>
+        </div>
+        <div class="food-grid" id="foodGrid"></div>
+        <div class="empty-state hidden" id="emptyState">
+          <div>🍽️</div>
+          <h3>No exact matches yet</h3>
+          <p>Try increasing your budget or switching your mood/cuisine.</p>
+          <button class="primary-btn" id="emptyReset">Reset filters</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="restaurant-section">
+      <div class="section-shell">
+        <div class="section-heading">
+          <div>
+            <span class="mini-label">EXPLORE LOCAL FAVOURITES</span>
+            <h2>Popular restaurants</h2>
+          </div>
+          <button class="text-btn" id="viewAllRestaurants">View all →</button>
+        </div>
+        <div class="restaurant-grid" id="restaurantGrid"></div>
+      </div>
+    </section>
+
+    <section class="offer-banner">
+      <div class="offer-inner">
+        <div>
+          <span class="mini-label">FIRST ORDER SPECIAL</span>
+          <h2>Good food. Better first impression.</h2>
+          <p>Get <strong>₹100 OFF</strong> on your first Tastigo order.</p>
+          <button class="light-btn" id="claimOffer">Claim offer</button>
+        </div>
+        <div class="coupon-card">
+          <small>USE CODE</small>
+          <strong>TASTY100</strong>
+          <span>Tap to copy</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="why-section">
+      <div class="section-shell">
+        <div class="section-heading centered">
+          <div>
+            <span class="mini-label">WHY TASTIGO?</span>
+            <h2>Food discovery, made personal</h2>
+          </div>
+        </div>
+        <div class="benefit-grid">
+          <article><span>🎯</span><h3>Choice-first</h3><p>Filter by what you actually care about—mood, budget, cuisine and diet.</p></article>
+          <article><span>⚡</span><h3>Quick decisions</h3><p>Stop scrolling endlessly. Tastigo narrows the menu to relevant choices.</p></article>
+          <article><span>💡</span><h3>Smart recommendations</h3><p>Discover dishes you may love based on your selected food mood.</p></article>
+          <article><span>🔒</span><h3>Ready for backend</h3><p>The frontend is structured so authentication, database and APIs can be added later.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="section-shell footer-grid">
+      <div>
+        <a class="brand footer-brand" href="#"><span class="brand-mark">T</span><span>Tasti<span>go</span></span></a>
+        <p>Food that fits your mood, choice and budget.</p>
+      </div>
+      <div><h4>Explore</h4><a href="#moodSection">Food moods</a><a href="#recommendationSection">Top picks</a><a href="#">Offers</a></div>
+      <div><h4>For you</h4><a href="#">Help & support</a><a href="#">Privacy</a><a href="#">Terms</a></div>
+      <div><h4>Coming next</h4><p>Live delivery tracking</p><p>Online payments</p><p>Restaurant dashboard</p></div>
+    </div>
+    <div class="footer-bottom">© 2026 Tastigo. Frontend prototype for academic project.</div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+
+  <aside class="side-panel cart-panel" id="cartPanel">
+    <div class="panel-head"><div><span class="mini-label">YOUR ORDER</span><h2>Your cart</h2></div><button class="close-btn" data-close>×</button></div>
+    <div class="cart-body" id="cartBody"></div>
+    <div class="cart-footer" id="cartFooter"></div>
+  </aside>
+
+  <aside class="side-panel filter-mobile-panel" id="mobileFilterPanel">
+    <div class="panel-head"><div><span class="mini-label">DISCOVER</span><h2>Smart filters</h2></div><button class="close-btn" data-close>×</button></div>
+    <div class="mobile-filter-content">
+      <p>Select a mood and budget from the main page.</p>
+      <button class="primary-btn" data-close>Back to Tastigo</button>
+    </div>
+  </aside>
+
+  <div class="modal" id="loginModal">
+    <div class="modal-card small-modal">
+      <button class="close-btn modal-close" data-close>×</button>
+      <div class="modal-icon">👋</div>
+      <span class="mini-label">WELCOME TO TASTIGO</span>
+      <h2>Let's get you signed in</h2>
+      <p class="muted">This is a frontend demo. Backend authentication can be connected later.</p>
+      <form id="loginForm">
+        <label>Email address<input type="email" placeholder="you@example.com" required></label>
+        <label>Password<input type="password" placeholder="••••••••" required minlength="4"></label>
+        <button class="primary-btn" type="submit">Continue →</button>
+      </form>
+      <p class="demo-note">Demo mode: any valid email + 4+ character password works.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="locationModal">
+    <div class="modal-card small-modal">
+      <button class="close-btn modal-close" data-close>×</button>
+      <div class="modal-icon">📍</div>
+      <span class="mini-label">DELIVERY LOCATION</span>
+      <h2>Where should we deliver?</h2>
+      <label class="location-input"><span>⌖</span><input id="locationInput" value="Jaipur, Rajasthan" placeholder="Enter area or city"></label>
+      <button class="primary-btn" id="saveLocation">Save location</button>
+    </div>
+  </div>
+
+  <div class="modal" id="itemModal">
+    <div class="modal-card item-modal-card">
+      <button class="close-btn modal-close" data-close>×</button>
+      <div id="itemModalContent"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="orderModal">
+    <div class="modal-card small-modal">
+      <button class="close-btn modal-close" data-close>×</button>
+      <div class="modal-icon">📦</div>
+      <span class="mini-label">DEMO ORDER TRACKING</span>
+      <h2>Your order is on the way!</h2>
+      <div class="tracking">
+        <div class="track-step done"><span>✓</span><div><strong>Order confirmed</strong><small>Restaurant received your order</small></div></div>
+        <div class="track-line"></div>
+        <div class="track-step done"><span>✓</span><div><strong>Preparing food</strong><small>Your meal is being prepared</small></div></div>
+        <div class="track-line"></div>
+        <div class="track-step current"><span>🛵</span><div><strong>Out for delivery</strong><small>Rider is heading your way</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
